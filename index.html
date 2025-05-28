@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>整蛊页面</title>
+<style>
+  body {background: black; color: red; font-family: Courier New, monospace; text-align: center; padding-top: 100px;}
+  h1 {font-size: 48px; animation: blink 1s infinite;}
+  @keyframes blink {0%, 100% {opacity: 1;} 50% {opacity: 0;}}
+  #countdown {font-size: 40px; margin-top: 30px;}
+  #message {font-size: 24px; margin-top: 20px;}
+</style>
+</head>
+<body>
+  <h1>⚠️ 警告：你被锁定了</h1>
+  <div id="countdown">倒计时：30 秒</div>
+  <div id="message">请立即关闭微信！</div>
+  <script>
+    let timeLeft = 30;
+    const countdownEl = document.getElementById("countdown");
+    const messageEl = document.getElementById("message");
+    const timer = setInterval(() => {
+      timeLeft--;
+      countdownEl.innerText = `倒计时：${timeLeft} 秒`;
+      if (timeLeft === 0) {
+        clearInterval(timer);
+        alert("💥太晚了！你已经上钩啦！");
+        document.body.style.backgroundColor = "#ff0000";
+        countdownEl.innerText = "💀 系统已接管";
+        messageEl.innerText = "game over 😈";
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
